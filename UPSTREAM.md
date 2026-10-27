@@ -32,4 +32,4 @@ Upstream is the source of truth for weather logic, rendering and the module/prov
 
 ## Licensing note
 
-Upstream has no license file. This repository is released under The Unlicense (public domain) by the same author, 2026-10-27.
+Upstream has no license file. This repository is released under the MIT License by the same author (2026-10-27; briefly Unlicense the same day, replaced before any release).

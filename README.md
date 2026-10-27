@@ -5,9 +5,9 @@
 ![Platform](https://img.shields.io/badge/platform-Synology%20%7C%20Docker%20%7C%20Linux-lightgrey)
 ![Data](https://img.shields.io/badge/data-SMHI%20%7C%20Yr-green)
 ![Netatmo](https://img.shields.io/badge/Netatmo-valfritt-orange)
-![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue)
+![License: MIT](https://img.shields.io/badge/license-MIT-blue)
 
-> **In English:** paperweather-server draws a weather dashboard as an 800×480 black-and-white PNG for e-ink screens and serves it over HTTP (Docker, runs on a NAS). The text on the image is **Swedish only** and the default data source (SMHI) covers Sweden; the Yr provider works worldwide. No API keys required. Public domain ([Unlicense](LICENSE)).
+> **In English:** paperweather-server draws a weather dashboard as an 800×480 black-and-white PNG for e-ink screens and serves it over HTTP (Docker, runs on a NAS). The text on the image is **Swedish only** and the default data source (SMHI) covers Sweden; the Yr provider works worldwide. No API keys required. MIT licensed ([LICENSE](LICENSE)).
 
 En liten webbserver som ritar en **väderpanel som en svartvit bild på 800×480 pixlar** och visar den via HTTP. Den är gjord för e-ink-skärmar (e-papper), som bara kan visa svart och vitt och uppdateras långsamt, men fungerar på vilken skärm som helst som kan visa en bild.
 
@@ -63,7 +63,7 @@ Användning:
 - en surfplatta på väggen eller en mobil i liggande läge,
 - allt som kan visa en bild från en URL.
 
-> **Licens:** public domain via [The Unlicense](LICENSE) — använd, kopiera, ändra och sälj fritt, utan krav på att ange källa. Medföljande material från tredje part har kvar sina egna licenser: Weather Icons (SIL OFL 1.1 / MIT, se `weather-icons-master/README.md`) och typsnittet DejaVu Sans (Bitstream Vera-licens).
+> **Licens:** [MIT](LICENSE), © 2026 Christian Gillinger — använd, kopiera, ändra och sälj fritt, men behåll upphovsrätts- och licenstexten (dvs. ange var koden kommer ifrån). Medföljande material från tredje part har kvar sina egna licenser: Weather Icons (SIL OFL 1.1 / MIT, se `weather-icons-master/README.md`) och typsnittet DejaVu Sans (Bitstream Vera-licens).
 
 ## Datakällor
 

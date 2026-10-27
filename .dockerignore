@@ -1,0 +1,13 @@
+.git
+.gitignore
+__pycache__/
+*.pyc
+venv/
+.venv/
+cache/
+logs/
+config.json
+*.log
+weather-icons-master/
+README.md
+UPSTREAM.md

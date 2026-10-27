@@ -1,0 +1,18 @@
+# paperweather-server - for Synology Container Manager (Projects) or docker compose.
+# Place this file next to config.json (copy of config.example.json).
+services:
+  paperweather:
+    build: .
+    image: paperweather-server:latest
+    container_name: paperweather-server
+    ports:
+      - "8037:8037"
+    environment:
+      TZ: Europe/Stockholm
+    volumes:
+      - ./config.json:/app/config.json:ro
+      - paperweather-data:/data   # cache + logs
+    restart: unless-stopped
+
+volumes:
+  paperweather-data:

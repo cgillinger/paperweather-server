@@ -1,6 +1,6 @@
 {
   "_comment": "paperweather-server example config. Copy to config.json and edit. JSON has no comments, so fields starting with _comment are ignored notes. config.json holds your settings and keys: never commit it.",
-  "_comment_fonts": "Typsnitt i relativ sökväg för portabilitet",
+  "_comment_fonts": "Font paths are relative to the project folder",
   "_comment_provider": "weather_provider: 'smhi' = SMHI (Sweden only, the default and best tested) or 'yr' = MET Norway/Yr (global). Observations (smhi_observations) are always SMHI and only meaningful in Sweden.",
   "weather_provider": "smhi",
   "_comment_location": "Replace with your own place. name is shown on the display. Use decimal degrees (negative = south/west).",

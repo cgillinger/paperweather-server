@@ -1,5 +1,7 @@
 # Upstream
 
+*Maintainer notes.* This repository was created from the author's private project `eink_weather_2` (Raspberry Pi e-ink weather display plus a web version). You do not need that project to use paperweather-server; this file only records where the code came from and what was changed.
+
 **Source of truth:** [cgillinger/eink_weather_2](https://github.com/cgillinger/eink_weather_2) (private at the time of writing).
 
 **Based on:** commit `478a7c4` (2026-08-20), branch `main`. No upstream history is included.

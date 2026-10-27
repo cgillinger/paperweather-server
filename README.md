@@ -7,6 +7,7 @@
 ![Platform](https://img.shields.io/badge/platform-Synology%20%7C%20Docker%20%7C%20Linux-lightgrey)
 ![Data](https://img.shields.io/badge/data-SMHI%20%7C%20Yr-green)
 ![Netatmo](https://img.shields.io/badge/Netatmo-optional-orange)
+![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue)
 
 A small web server that draws a **weather dashboard as an 800×480 black-and-white image** and serves it over HTTP. It is designed for e-ink (e-paper) screens, which can only show black and white and refresh slowly, but any screen that can show an image works.
 
@@ -35,7 +36,7 @@ It runs on a NAS or any Docker host — **no Raspberry Pi, no Waveshare display 
 
 Data sources: SMHI (forecast and observations) or Yr/MET Norway, UV index from currentuvindex.com (no key), sunrise/sunset calculated locally (NOAA algorithm, no key needed). Optional: Netatmo (home weather station) and ipgeolocation.io (sun times via API).
 
-> **License:** the upstream project has no license file, so none is granted here either. This repository is published for transparency and personal use; no license has been invented. Bundled third-party material keeps its own license (Weather Icons: SIL OFL 1.1 / MIT, see `weather-icons-master/README.md`; DejaVu Sans font).
+> **License:** public domain via [The Unlicense](LICENSE) — use, copy, modify and sell freely, no attribution required. Bundled third-party material keeps its own license: Weather Icons (SIL OFL 1.1 / MIT, see `weather-icons-master/README.md`) and the DejaVu Sans font (Bitstream Vera license).
 
 ## Endpoints
 

@@ -539,7 +539,8 @@ class EPaperWeatherWeb:
         if outdoor_battery is None and rain_battery is None:
             provider = str(self.config.get('weather_provider', 'smhi')).lower()
             source_name = 'Yr' if provider == 'yr' else 'SMHI'
-            station = (self.config.get('smhi_observations') or {}).get('primary_station_name')
+            # SMHI observations are only used by the SMHI provider
+            station = None if provider == 'yr' else (self.config.get('smhi_observations') or {}).get('primary_station_name')
             max_w = width - 40
             self.draw.text((dot_x + 10, y + 45), self.truncate_text(f"Källa: {source_name}", self.fonts['small_desc'], max_w),
                            font=self.fonts['small_desc'], fill=0)

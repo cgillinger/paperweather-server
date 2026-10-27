@@ -1494,7 +1494,8 @@ class WeatherClient:
             combined['temperature_source'] = 'netatmo'
         elif smhi_data and 'temperature' in smhi_data:
             combined['temperature'] = smhi_data['temperature']
-            combined['temperature_source'] = 'smhi'
+            # Källetikett efter vald provider, så att YR-data inte märks "SMHI"
+            combined['temperature_source'] = 'yr' if str(self.config.get('weather_provider', 'smhi')).lower() == 'yr' else 'smhi'
 
         # LUFTTRYCK: Netatmo inomhus > SMHI
         if netatmo_data and 'pressure' in netatmo_data:

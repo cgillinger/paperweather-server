@@ -15,14 +15,42 @@ Allt som behövs finns i det här repot. Servern körs på en NAS eller annan Do
 
 ![Exempel](docs/example.png)
 
-Bilden visar:
-
-- **Aktuellt väder** för din plats: temperatur, vädersymbol och beskrivning, soluppgång och solnedgång samt UV-index.
-- **Vind**: medelvind i m/s med byvind inom parentes, beskrivning och riktning.
-- **I morgon**: prognos för temperatur och väder.
-- **Datum** och en **statusruta** med tid för senaste uppdatering och datakälla.
-
 Bilden ritas om var tionde minut.
+
+## Vad bilden visar
+
+Bilden har fem rutor. Två av dem byter innehåll beroende på vädret, så att det som är viktigast just nu syns.
+
+| Ruta | Visar normalt | Byts mot | När |
+|------|---------------|----------|-----|
+| Stor ruta, vänster | Aktuellt väder | — | — |
+| Övre högra | **Barometer** | **Vind** | Medelvinden är över 6 m/s |
+| Nedre högra | Prognos för i morgon | — | — |
+| Nedre raden | **Datum** + **statusruta** | **Nederbörd** (cykelvarning) | Det regnar, eller regn väntas inom två timmar |
+
+**Aktuellt väder:** temperatur, vädersymbol och beskrivning (t.ex. "Mulet"), källa inom parentes, soluppgång och solnedgång samt UV-index.
+
+**Barometer** (lugnt väder): lufttryck i hPa, ett tryckord och en pil för trenden.
+
+- Tryckordet beskriver trycknivån: **Storm** (under 980 hPa), **Regn** (980–1000), **Ostadigt** (1000–1013), **Vackert** (1013–1040), **Mycket Torrt** (över 1040).
+- Pilen och raden under ordet visar hur trycket ändrats de senaste tre timmarna (t.ex. `-1.2 hPa/3h`). Fallande tryck betyder ofta sämre väder på väg. De första timmarna efter start står det **Samlar data**, eftersom servern måste samla egna mätningar innan den kan räkna ut trenden.
+- Utan Netatmo kommer trycket från SMHI; med Netatmo från din egen station.
+
+![Barometervy](docs/example-barometer.png)
+
+**Vind** (blåsigt väder, över 6 m/s): medelvind i m/s med byvind inom parentes, en beskrivning på svenska enligt Beaufortskalan (t.ex. "Måttlig vind", "Frisk vind") och vindriktning. Se exemplet överst.
+
+**Nederbörd / cykelvarning:** när det regnar, eller när prognosen visar minst 0,2 mm/h inom två timmar, ersätts datum och statusruta av en varningsruta. Tanken är att man ska kunna se med en blick om man behöver regnkläder på cykeln.
+
+- **REGNAR NU** med intensitet, eller **REGN VÄNTAT** med intensitet och när det börjar (t.ex. "LÄTT - startar 18:00").
+- Intensitet: **DUGGREGN** (under 0,5 mm/h), **LÄTT** (under 1), **MÅTTLIG** (under 2,5), **KRAFTIG** (under 10), **MYCKET KRAFTIG** (10 eller mer).
+- Med SMHI bygger "regnar nu" på mätningar från den valda observationsstationen (eller Netatmos regnmätare om du har en); med YR på prognosen för den närmaste timmen.
+
+**I morgon:** temperatur och väder för morgondagen enligt prognosen.
+
+**Datum och statusruta:** veckodag och datum, tid för senaste uppdatering och datakälla (med Netatmo i stället batterinivåerna för stationens moduler).
+
+Gränserna (6 m/s, 0,2 mm/h) går att ändra under `triggers` i `config.json`.
 
 Användning:
 

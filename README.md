@@ -1,4 +1,4 @@
-> **Downstream project** — server/Docker edition of [cgillinger/eink_weather_2](https://github.com/cgillinger/eink_weather_2), the Raspberry Pi e-ink weather station. Weather logic lives upstream; fix bugs there first, then carry them over.
+> **Downstream project** — server/Docker edition of [cgillinger/eink_weather_2](https://github.com/cgillinger/eink_weather_2), the Raspberry Pi e-ink weather station (private repository). Weather logic lives upstream; fix bugs there first, then carry them over.
 
 # paperweather-server
 

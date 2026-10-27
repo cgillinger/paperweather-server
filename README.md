@@ -1,4 +1,4 @@
-> **Downstream project** — server/Docker edition of [cgillinger/eink_weather_2](https://github.com/cgillinger/eink_weather_2) (private repository). Upstream contains both the Raspberry Pi e-ink daemon (`main_daemon.py`) and the original web version (`main_web.py`); this repo is a standalone copy of the web version only. Weather logic lives upstream; fix bugs there first, then carry them over.
+> **Downstream project** — server/Docker edition of [cgillinger/eink_weather_2](https://github.com/cgillinger/eink_weather_2) (private repository, not needed to use this one). Upstream contains both the Raspberry Pi e-ink daemon (`main_daemon.py`) and the original web version (`main_web.py`); this repo is a standalone copy of the web version only. Weather logic lives upstream; fix bugs there first, then carry them over.
 
 # paperweather-server
 
@@ -8,7 +8,24 @@
 ![Data](https://img.shields.io/badge/data-SMHI%20%7C%20Yr-green)
 ![Netatmo](https://img.shields.io/badge/Netatmo-optional-orange)
 
-A small web server that renders an **800×480 black-and-white weather image**, the same layout as the e-ink station, and serves it over HTTP. Use it for:
+A small web server that draws a **weather dashboard as an 800×480 black-and-white image** and serves it over HTTP. It is designed for e-ink (e-paper) screens, which can only show black and white and refresh slowly, but any screen that can show an image works.
+
+![Example output](docs/example.png)
+
+The image shows:
+
+- **Current weather** for your location: temperature, a weather symbol and description (e.g. "Mulet" = overcast), sunrise and sunset, and UV index.
+- **Wind**: average speed with gusts in parentheses, a description and the direction.
+- **Tomorrow**: forecast temperature and weather.
+- **Date** and a **status box** with the time of the last update and the data source.
+
+Text on the image is in Swedish. The image is redrawn every 10 minutes.
+
+### Background
+
+The layout was originally made for a physical weather display: a Raspberry Pi with a 4.26" Waveshare e-paper screen, driven by the private project [eink_weather_2](https://github.com/cgillinger/eink_weather_2). That project also contains a web version that renders the same picture for a browser. **paperweather-server is a standalone copy of that web version**, packaged for Docker, so the dashboard can run on a NAS and be shown on any screen. You do not need the Raspberry Pi project to use it.
+
+Use it for:
 
 - e-ink clients or ESP32/Pi displays that fetch a PNG on a schedule,
 - a wall tablet or phone browser (landscape),

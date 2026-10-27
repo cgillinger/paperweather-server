@@ -33,7 +33,12 @@ Bilden har fem rutor. Två av dem byter innehåll beroende på vädret, så att 
 **Barometer** (lugnt väder): lufttryck i hPa, ett tryckord och en pil för trenden.
 
 - Tryckordet beskriver trycknivån: **Storm** (under 980 hPa), **Regn** (980–1000), **Ostadigt** (1000–1013), **Vackert** (1013–1040), **Mycket Torrt** (över 1040).
-- Pilen och raden under ordet visar hur trycket ändrats de senaste tre timmarna (t.ex. `-1.2 hPa/3h`). Fallande tryck betyder ofta sämre väder på väg. De första timmarna efter start står det **Samlar data**, eftersom servern måste samla egna mätningar innan den kan räkna ut trenden.
+- Pilen och raden under ordet visar hur trycket ändrats de senaste tre timmarna (t.ex. `-1.2 hPa/3h`). Fallande tryck betyder ofta sämre väder på väg. Servern sparar en tryckmätning ungefär var tionde minut, dygnet runt, i en historikfil som ligger kvar vid omstart (i Docker i volymen `paperweather-data`). Trenden räknas ut från den historiken:
+  - **Samlar data** — bara de första cirka 30 minuterna efter allra första start (eller om historiken raderats).
+  - **`~`** framför värdet (t.ex. `~+0.9 hPa/3h`) — preliminär trend, mindre än 2,5 timmars historik.
+  - Utan `~` — riktig trend över tre timmar.
+
+  En omstart nollställer alltså inte trenden.
 - Utan Netatmo kommer trycket från SMHI; med Netatmo från din egen station.
 
 ![Barometervy](docs/example-barometer.png)

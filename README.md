@@ -125,7 +125,7 @@ Allt ställs in i `config.json` (utgå från `config.example.json`; nycklar som 
 - **SMHI-observationsstation** (`smhi_observations`): används för "har det regnat senaste timmen?" och visas i statusrutan. Välj närmaste station i `smhi_stationer.md` (stations-id för större svenska städer) eller följ `smhi_stationer_instruktion.md` för att hitta en var som helst i Sverige. Ange `primary_station_id`/`primary_station_name` och en reserv i `fallback_station_*`. Med `yr` används inte stationen, så exempelvärdena kan stå kvar.
 - **Netatmo (valfritt)**: bara om du har en Netatmo-väderstation. Skapa en app på <https://dev.netatmo.com>, generera en token med behörigheten `read_station` i appens token-generator och fyll i `client_id`, `client_secret` och `refresh_token` under `api_keys.netatmo`. Temperatur, lufttryck och regn hämtas då från din egen station och statusrutan visar dess batterinivåer. Lämna alla tre tomma för att stänga av Netatmo.
 - **ipgeolocation.io (valfritt)**: lägg en nyckel i `api_keys.ipgeolocation` för att hämta soltider från det API:et. Behövs inte — utan nyckel räknas soltiderna ut lokalt.
-- **Layout, moduler, triggers**: styr vilka rutor som visas och när (t.ex. ersätts vindrutan av en nederbördsruta när regn väntas). Låt dem vara om du inte vill experimentera.
+- **Layout, moduler, triggers**: styr vilka rutor som visas och när (se [Vad bilden visar](#vad-bilden-visar)). Gränserna för vind- och nederbördsrutan ändras under `triggers`; resten låter du vara om du inte vill experimentera.
 
 Håll `config.json` privat om du lägger in nycklar — den är undantagen från git och från Docker-avbildningen.
 

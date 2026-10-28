@@ -1,0 +1,13 @@
+{
+  "title": "PaperWeather",
+  "description": "Fetches the weather image as sleep screen on sleep.",
+  "events": {
+    "sleep.enter": {
+      "download": {
+        "url": "http://NAS-IP:8037/weather-x4pro.bmp",
+        "method": "GET",
+        "dest": "/sleep.bmp"
+      }
+    }
+  }
+}

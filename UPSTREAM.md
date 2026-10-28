@@ -24,6 +24,7 @@ Upstream is the source of truth for weather logic, rendering and the module/prov
 - `modules/sun_calculator.py`: simplified fallback replaced by the NOAA solar algorithm (stdlib only, `zoneinfo`, `TZ` env var, default `Europe/Stockholm`). Without an ipgeolocation key this is the normal path and not logged as a warning. Polar day/night is handled without errors.
 - `main_web.py`: the status box shows data source and observation station when no Netatmo battery data exists (previously empty).
 - `modules/weather_client.py`: missing Netatmo credentials are logged at info level, not warning.
+- Carried over from upstream PR #19 (2026-10-28): `/weather-x4pro.bmp` endpoint in `main_web.py`, `tests/test_x4pro_bmp.py`, `crosspoint-plugin/paperweather/device.json` (server address as `NAS-IP` placeholder).
 - New: `Dockerfile`, `compose.yaml`, `.dockerignore`, `requirements.txt`, `config.example.json`, `README.md`, `UPSTREAM.md`.
 
 ## Kept as is

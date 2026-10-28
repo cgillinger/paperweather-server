@@ -86,8 +86,19 @@ Utanför Sverige väljer du `yr` som källa. YR ger bara prognoser: "regnar nu" 
 | `/weather.png` | PNG-bilden, 800×480 |
 | `/api/weather` | Aktuell väderdata som JSON |
 | `/api/refresh` | `POST` — tvinga fram ny hämtning och omritning |
+| `/weather-x4pro.bmp` | Samma bild som 1-bitars BMP 480×800 (roterad), som vilobild för Xteink X4 Pro med CrossPoint — se nedan |
 
 Standardport: **8037**.
+
+### Vilobild på Xteink X4 Pro (CrossPoint)
+
+Med CrossPoint 2.0.0rc eller senare kan läsaren hämta väderbilden varje gång den somnar.
+
+1. Kopiera mappen `crosspoint-plugin/paperweather/` till `/plugins/paperweather/` på läsarens SD-kort och byt `NAS-IP` i `device.json` mot NAS:ens adress.
+2. Slå på **Settings → Connectivity → Plugins**, ställ **Sleep Screen** på **Custom** och filtret på **No filter**.
+3. Anslut läsaren till hemmanätet en gång och starta om den.
+
+Bilden roteras 90° (`"x4pro": {"rotation": 90}` i `config.json`, eller 270). Läsaren byter bara bild när hämtningen lyckas, annars visas den senaste. Kräver minst 20 % batteri. Stäng av genom att ta bort pluginmappen eller slå av Plugins.
 
 ## Installera på Synology (Container Manager)
 

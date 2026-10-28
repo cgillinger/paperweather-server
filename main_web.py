@@ -25,7 +25,7 @@ import threading
 from datetime import datetime, timedelta
 from typing import Dict, Optional, List, Any
 from PIL import Image, ImageDraw, ImageFont
-from flask import Flask, render_template, send_file, jsonify
+from flask import Flask, render_template, send_file, jsonify, request
 
 # Lägg till projektets moduler
 sys.path.append('modules')
@@ -616,6 +616,32 @@ class EPaperWeatherWeb:
         img_io.seek(0)
         return img_io
 
+    def get_x4pro_bmp_bytes(self, rotation=None):
+        """1-bit portrait BMP (480x800) for the X4 Pro sleep screen.
+
+        Returns None if no image has been rendered yet (never renders here).
+        """
+        if rotation is None:
+            rotation = self.config.get('x4pro', {}).get('rotation', 90)
+        if rotation == 90:
+            transpose = Image.Transpose.ROTATE_90
+        elif rotation == 270:
+            transpose = Image.Transpose.ROTATE_270
+        else:
+            raise ValueError(f"Unsupported rotation: {rotation}")
+
+        # Local reference: latest_image may be replaced by another thread
+        image = self.latest_image
+        if image is None:
+            return None
+
+        # No dithering and lossless rotation keep the 1-bit pixels intact
+        bw = image.convert('1', dither=Image.Dither.NONE).transpose(transpose)
+        img_io = io.BytesIO()
+        bw.save(img_io, 'BMP')
+        img_io.seek(0)
+        return img_io
+
     def get_weather_json(self):
         """Returnera väderdata som JSON för API"""
         if self.latest_weather_data:
@@ -653,6 +679,30 @@ def weather_image():
         return response
     except Exception as e:
         app.logger.error(f"❌ Fel vid bildservering: {e}")
+        return "Error generating image", 500
+
+
+@app.route('/weather-x4pro.bmp')
+def weather_x4pro_bmp():
+    """1-bit 480x800 BMP for the CrossPoint sleep screen (non-2xx = no image)"""
+    try:
+        rotate = request.args.get('rotate')
+        if rotate is None:
+            rotation = None
+        elif rotate in ('90', '270'):
+            rotation = int(rotate)
+        else:
+            return "rotate must be 90 or 270", 400
+        img_bytes = weather_web.get_x4pro_bmp_bytes(rotation)
+        if img_bytes is None:
+            return "No image rendered yet", 503
+        response = send_file(img_bytes, mimetype='image/bmp')
+        response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+        response.headers['Pragma'] = 'no-cache'
+        response.headers['Expires'] = '0'
+        return response
+    except Exception as e:
+        app.logger.error(f"X4 Pro BMP error: {e}")
         return "Error generating image", 500
 
 

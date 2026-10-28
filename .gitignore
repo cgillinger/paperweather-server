@@ -27,6 +27,7 @@ cache/
 modules/cache/
 *.json
 !config.example.json
+!crosspoint-plugin/**/*.json
 
 ################################
 # Databaser & lokala data
